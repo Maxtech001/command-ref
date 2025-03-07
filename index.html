@@ -3,103 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Command Reference</title>
+    <title>Linux Commands List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #d79797;
+            background-color: #007bff;
+            color: white;
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        code {
-            background-color: #cfe418;
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-family: monospace;
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
         }
     </style>
+    <script>
+        function searchCommands() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let table = document.getElementById("commandTable");
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 1; i < rows.length; i++) {
+                let text = rows[i].textContent.toLowerCase();
+                rows[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+    </script>
 </head>
 <body>
-
-    <h2>Linux Command Reference</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Category</th>
-                <th>Command</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>File Management</td><td><code>ls</code></td><td>List directory contents</td></tr>
-            <tr><td>File Management</td><td><code>cd</code></td><td>Change directory</td></tr>
-            <tr><td>File Management</td><td><code>pwd</code></td><td>Print working directory</td></tr>
-            <tr><td>File Management</td><td><code>mkdir</code></td><td>Create a new directory</td></tr>
-            <tr><td>File Management</td><td><code>rmdir</code></td><td>Remove empty directories</td></tr>
-            <tr><td>File Management</td><td><code>rm</code></td><td>Remove files or directories</td></tr>
-            <tr><td>File Management</td><td><code>cp</code></td><td>Copy files and directories</td></tr>
-            <tr><td>File Management</td><td><code>mv</code></td><td>Move or rename files and directories</td></tr>
-            <tr><td>File Management</td><td><code>touch</code></td><td>Create an empty file</td></tr>
-            <tr><td>File Management</td><td><code>find</code></td><td>Search for files in a directory hierarchy</td></tr>
-            <tr><td>File Management</td><td><code>locate</code></td><td>Find a file by name</td></tr>
-            <tr><td>File Management</td><td><code>stat</code></td><td>Display detailed information about a file</td></tr>
-            <tr><td>File Management</td><td><code>tree</code></td><td>Show directories and files in a tree-like format</td></tr>
-
-            <tr><td>File Permissions & Ownership</td><td><code>chmod</code></td><td>Change file permissions</td></tr>
-            <tr><td>File Permissions & Ownership</td><td><code>chown</code></td><td>Change file owner</td></tr>
-            <tr><td>File Permissions & Ownership</td><td><code>chgrp</code></td><td>Change file group</td></tr>
-            <tr><td>File Permissions & Ownership</td><td><code>umask</code></td><td>Set default permissions for new files</td></tr>
-
-            <tr><td>Process Management</td><td><code>ps</code></td><td>Display active processes</td></tr>
-            <tr><td>Process Management</td><td><code>top</code></td><td>Show real-time system processes</td></tr>
-            <tr><td>Process Management</td><td><code>htop</code></td><td>Interactive process monitoring</td></tr>
-            <tr><td>Process Management</td><td><code>kill</code></td><td>Terminate a process</td></tr>
-            <tr><td>Process Management</td><td><code>killall</code></td><td>Terminate all processes by name</td></tr>
-            <tr><td>Process Management</td><td><code>pkill</code></td><td>Kill a process by name</td></tr>
-            <tr><td>Process Management</td><td><code>bg</code></td><td>Resume a job in the background</td></tr>
-            <tr><td>Process Management</td><td><code>fg</code></td><td>Resume a job in the foreground</td></tr>
-            <tr><td>Process Management</td><td><code>jobs</code></td><td>List active jobs</td></tr>
-
-            <tr><td>User Management</td><td><code>whoami</code></td><td>Display the current user</td></tr>
-            <tr><td>User Management</td><td><code>who</code></td><td>Show who is logged in</td></tr>
-            <tr><td>User Management</td><td><code>id</code></td><td>Display user ID and group ID</td></tr>
-            <tr><td>User Management</td><td><code>adduser</code></td><td>Add a new user</td></tr>
-            <tr><td>User Management</td><td><code>userdel</code></td><td>Delete a user</td></tr>
-
-            <tr><td>Networking</td><td><code>ping</code></td><td>Check network connectivity</td></tr>
-            <tr><td>Networking</td><td><code>curl</code></td><td>Transfer data from or to a server</td></tr>
-            <tr><td>Networking</td><td><code>wget</code></td><td>Download files from the internet</td></tr>
-            <tr><td>Networking</td><td><code>netstat</code></td><td>Display network connections</td></tr>
-            <tr><td>Networking</td><td><code>traceroute</code></td><td>Show the route packets take to a network host</td></tr>
-
-            <tr><td>Disk Management</td><td><code>df</code></td><td>Show disk space usage</td></tr>
-            <tr><td>Disk Management</td><td><code>du</code></td><td>Show directory size</td></tr>
-
-            <tr><td>System Monitoring</td><td><code>uptime</code></td><td>Show system uptime</td></tr>
-            <tr><td>System Monitoring</td><td><code>free</code></td><td>Display memory usage</td></tr>
-
-            <tr><td>Shell & Scripting</td><td><code>echo</code></td><td>Print text to the terminal</td></tr>
-            <tr><td>Shell & Scripting</td><td><code>history</code></td><td>Show command history</td></tr>
-            <tr><td>Shell & Scripting</td><td><code>alias</code></td><td>Create command shortcuts</td></tr>
-            <tr><td>Shell & Scripting</td><td><code>unalias</code></td><td>Remove an alias</td></tr>
-            <tr><td>Shell & Scripting</td><td><code>bash</code></td><td>Start a new shell session</td></tr>
-            <tr><td>Shell & Scripting</td><td><code>sh</code></td><td>Execute shell scripts</td></tr>
-        </tbody>
-    </table>
-
+    <div class="container">
+        <h1>Linux Commands List</h1>
+        <input type="text" id="search" onkeyup="searchCommands()" placeholder="Search for commands...">
+        <table id="commandTable">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>File Management</td><td>ls</td><td>List directory contents</td></tr>
+                <tr><td>File Management</td><td>cd</td><td>Change directory</td></tr>
+                <tr><td>File Management</td><td>pwd</td><td>Print working directory</td></tr>
+                <tr><td>File Management</td><td>mkdir</td><td>Create a new directory</td></tr>
+                <tr><td>File Management</td><td>rmdir</td><td>Remove empty directories</td></tr>
+                <tr><td>File Management</td><td>rm</td><td>Remove files or directories</td></tr>
+                <tr><td>File Management</td><td>cp</td><td>Copy files and directories</td></tr>
+                <tr><td>File Management</td><td>mv</td><td>Move or rename files and directories</td></tr>
+                <tr><td>File Management</td><td>touch</td><td>Create an empty file</td></tr>
+                <tr><td>File Management</td><td>find</td><td>Search for files in a directory hierarchy</td></tr>
+                <tr><td>File Management</td><td>locate</td><td>Find a file by name</td></tr>
+                <tr><td>File Management</td><td>stat</td><td>Display detailed information about a file</td></tr>
+                <tr><td>File Management</td><td>tree</td><td>Show directories and files in a tree-like format</td></tr>
+                <tr><td>File Permissions & Ownership</td><td>chmod</td><td>Change file permissions</td></tr>
+                <tr><td>File Permissions & Ownership</td><td>chown</td><td>Change file owner</td></tr>
+                <tr><td>File Permissions & Ownership</td><td>chgrp</td><td>Change file group</td></tr>
+                <tr><td>File Permissions & Ownership</td><td>umask</td><td>Set default permissions for new files</td></tr>
+                <tr><td>Process Management</td><td>ps</td><td>Display active processes</td></tr>
+                <tr><td>Process Management</td><td>top</td><td>Show real-time system processes</td></tr>
+                <tr><td>Process Management</td><td>htop</td><td>Interactive process monitoring</td></tr>
+                <tr><td>Process Management</td><td>kill</td><td>Terminate a process</td></tr>
+                <tr><td>Process Management</td><td>killall</td><td>Terminate all processes by name</td></tr>
+                <tr><td>Process Management</td><td>pkill</td><td>Kill a process by name</td></tr>
+                <tr><td>Networking</td><td>ping</td><td>Check network connectivity</td></tr>
+                <tr><td>Networking</td><td>curl</td><td>Transfer data from or to a server</td></tr>
+                <tr><td>Networking</td><td>wget</td><td>Download files from the internet</td></tr>
+                <tr><td>Networking</td><td>netstat</td><td>Display network connections</td></tr>
+                <tr><td>Networking</td><td>ss</td><td>Display detailed network statistics</td></tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
