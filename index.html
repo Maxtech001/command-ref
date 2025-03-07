@@ -31,11 +31,19 @@
             border-radius: 4px;
             font-family: monospace;
         }
+        #searchBar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-
     <h2>Linux Command Reference</h2>
+    <input type="text" id="searchBar" onkeyup="filterCommands()" placeholder="Search for commands...">
     <table>
         <thead>
             <tr>
@@ -44,8 +52,8 @@
                 <th>Description</th>
             </tr>
         </thead>
-        <tbody>
-            <tr><td>File Management</td><td><code>ls</code></td><td>List directory contents</td></tr>
+        <tbody id="commandTable">
+          <tr><td>File Management</td><td><code>ls</code></td><td>List directory contents</td></tr>
             <tr><td>File Management</td><td><code>cd</code></td><td>Change directory</td></tr>
             <tr><td>File Management</td><td><code>pwd</code></td><td>Print working directory</td></tr>
             <tr><td>File Management</td><td><code>mkdir</code></td><td>Create a new directory</td></tr>
@@ -178,10 +186,28 @@
         </tbody>
     </table>
 
-</body>
-</html>
-        </tbody>
-    </table>
-
+    <script>
+        function filterCommands() {
+            let input = document.getElementById("searchBar");
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById("commandTable");
+            let rows = table.getElementsByTagName("tr");
+            
+            for (let i = 0; i < rows.length; i++) {
+                let cols = rows[i].getElementsByTagName("td");
+                if (cols.length > 0) {
+                    let category = cols[0].textContent.toLowerCase();
+                    let command = cols[1].textContent.toLowerCase();
+                    let description = cols[2].textContent.toLowerCase();
+                    
+                    if (category.includes(filter) || command.includes(filter) || description.includes(filter)) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
